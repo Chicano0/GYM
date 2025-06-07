@@ -1,88 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in || Sign up from</title>
-     <!-- font awesome icons -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- css stylesheet -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in and Sign up form</title>
+    <!-- font awesome icons -->
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="form.css">
+</head>
+
+ 
+
+<body style="background-color:  white;">
+
+      
+    
     <div class="container" id="container">
+        
         <div class="form-container sign-up-container">
-            <form action="#">
-                <h1>Create Account</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email for registration</span>
-                <div class="infield">
-                    <input type="text" placeholder="Name" />
-                    <label></label>
-                </div>
-                <div class="infield">
-                    <input type="email" placeholder="Email" name="email"/>
-                    <label></label>
-                </div>
-                <div class="infield">
-                    <input type="password" placeholder="Password" />
-                    <label></label>
-                </div>
-                <button>Sign Up</button>
-            </form>
+<form action="register.php" id="signUpForm" method="post">
+                    <a href="/gym/index.html#" class="forgot">Inicio</a>
+
+    <h1>Regístrate en Trinity</h1>
+    <input type="text" name="nombre" placeholder="Nombre completo" required>
+    <input type="email" name="email" placeholder="Correo electrónico" required>
+    <input type="password" name="password" placeholder="Contraseña segura" required>
+    <button type="submit">Crear cuenta</button>
+</form>
+
+
         </div>
+<br>
+        <br>
+
+        <!-- FORMULARIO DE INICIO DE SESIÓN -->
         <div class="form-container sign-in-container">
-            <form action="#">
-                <h1>Sign in</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your account</span>
-                <div class="infield">
-                    <input type="email" placeholder="Email" name="email"/>
-                    <label></label>
-                </div>
-                <div class="infield">
-                    <input type="password" placeholder="Password" />
-                    <label></label>
-                </div>
-                <a href="#" class="forgot">Forgot your password?</a>
-                <button>Sign In</button>
+            <form action="login.php" id="signInForm" method="post">
+                  <a href="/gym/index.html#" class="forgot">Inicio</a>
+                <h1>Iniciar sesión</h1>
+                <input type="email" name="email" placeholder="Correo electrónico" required aria-label="Correo" />
+                <input type="password" name="password" placeholder="Contraseña" required aria-label="Contraseña" />
+                <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
+              
+
+                <br>
+                <br>
+                <button type="submit">Entrar</button>
             </form>
         </div>
-        <div class="overlay-container" id="overlayCon">
+
+  <br>
+        <!-- PANEL DE TRANSICIÓN -->
+        <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button>Sign In</button>
+                    <h1>¡Bienvenido de vuelta a Gym 3NDAD!</h1>
+                    <p>¿Ya tienes una cuenta? Inicia sesión aquí</p>
+                    <button class="ghost" id="signIn">Iniciar sesión</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
-                    <button>Sign Up</button>
+                    <h1>¡Hola, nuevo miembro!</h1>
+                    <p>Ingresa tus datos personales y únete a nuestra comunidad fitness</p>
+                    <button class="ghost" id="signUp">Registrarse</button>
+                    
+
                 </div>
             </div>
-            <button id="overlayBtn"></button>
         </div>
     </div>
 
-    <footer>
-        <mark>See more on <a href="https://www.youtube.com/channel/UCHIkJZkap10qGFHq5ViIExg">Karacode</a></mark>
-    </footer>
-    
-    <!-- js code -->
     <script>
+     const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+const signUpForm = document.getElementById('signUpForm');
+const signInForm = document.getElementById('signInForm');
+
+signUpButton.addEventListener('click', () => {
+    container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+});
+
+// Elimina el bloqueo del envío del formulario, aquí solo un ejemplo mínimo de validación opcional
+signUpForm.addEventListener('submit', (e) => {
+    // Ejemplo de validación mínima (opcional)
+    const email = signUpForm.email.value;
+    if (!email.includes('@')) {
+        e.preventDefault();
+        alert('Por favor ingresa un correo válido.');
+    }
+    // Si está bien, se envía el formulario normalmente sin preventDefault()
+});
+
+signInForm.addEventListener('submit', (e) => {
+    // Si quieres hacer lo mismo para signInForm, aquí también puedes validar
+    // Por ahora lo dejo para que envíe normalmente sin alert ni bloqueo
+});
+
+// Resto del script para estilos y optimizaciones
+
+const inputs = document.querySelectorAll('input');
+inputs.forEach(input => {
+    input.addEventListener('focus', function () {
+        this.style.transform = 'scale(1.02)';
+    });
+
+    input.addEventListener('blur', function () {
+        this.style.transform = 'scale(1)';
+    });
+});
+
+// Touch device optimization
+if ('ontouchstart' in window) {
+    document.body.classList.add('touch-device');
+}
+
+// Viewport height fix for mobile browsers
+function setViewportHeight() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+setViewportHeight();
+window.addEventListener('resize', setViewportHeight);
+window.addEventListener('orientationchange', () => {
+    setTimeout(setViewportHeight, 100);
+});
+
+// Prevent zoom on input focus for iOS
+if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            const metaViewport = document.querySelector('meta[name="viewport"]');
+            metaViewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+        });
+
+        input.addEventListener('blur', () => {
+            const metaViewport = document.querySelector('meta[name="viewport"]');
+            metaViewport.setAttribute('content', 'width=device-width, initial-scale=1');
+        });
+    });
+}
+
+// Smooth scrolling para formularios largos en móvil
+if (window.innerWidth <= 768) {
+    const formInputs = document.querySelectorAll('input');
+    formInputs.forEach(input => {
+        input.addEventListener('focus', function () {
+            setTimeout(() => {
+                this.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 300);
+        });
+    });
+}
 
     </script>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("registro") === "exito") {
+        Swal.fire({
+            icon: "success",
+            title: "Registro exitoso",
+            text: "Tu cuenta ha sido creada correctamente.",
+            confirmButtonText: "Aceptar"
+        });
+    } else if (params.get("registro") === "error") {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Hubo un problema al registrar. Intenta nuevamente.",
+            confirmButtonText: "Reintentar"
+        });
+    }
+});
+</script>
+
+
+
+    
+
 </body>
+
 </html>
