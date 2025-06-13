@@ -4,7 +4,560 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRINITY</title>
-    <link rel="stylesheet" href="stylecssindex/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: #222;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #ff6b35;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: #ff6b35;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #e55a2b;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #222;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 20px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .service-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: #ff6b35;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+        }
+
+        /* Contact */
+        .contact {
+            background: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        /* Footer */
+        .footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* Virtual Agent Styles */
+        .virtual-agent-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .agent-button {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        .agent-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            }
+            100% {
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            }
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 10000;
+        }
+
+        .chat-window.active {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .agent-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .close-chat {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .close-chat:hover {
+            opacity: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9ff;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .quick-actions {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .quick-action-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-action-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .chat-input button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 10px 16px;
+            background: white;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #222;
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .chat-window {
+                width: calc(100vw - 20px);
+                right: 10px;
+                left: 10px;
+                height: 70vh;
+            }
+
+            .virtual-agent-container {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .stats {
+                padding: 40px 15px;
+            }
+
+            .contact {
+                padding: 40px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -107,7 +660,7 @@
     <!-- Stats -->
     <section class="stats">
         <div class="container">
-            <h2 class="section-title" style="color: white;">FitLife en Números</h2>
+            <h2 class="section-title" style="color: white;">GYMTRINITY en Números</h2>
             <div class="stats-grid">
                 <div class="stat-item">
                     <h3>2500+</h3>
@@ -145,7 +698,7 @@
                 </div>
                 <div class="contact-item">
                     <h4>✉️ Email</h4>
-                    <p>info@fitlifegym.com</p>
+                    <p>info@gymtrinity.com</p>
                 </div>
                 <div class="contact-item">
                     <h4>🕒 Horarios</h4>
@@ -158,8 +711,52 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 FitLife Gym. Todos los derechos reservados.</p>
+        <p>&copy; 2025 GYMTRINITY. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- Virtual Agent -->
+    <div class="virtual-agent-container">
+        <button class="agent-button" id="agentButton">
+            🤖
+        </button>
+        
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="agent-avatar">🤖</div>
+                <h3>Asistente GYMTRINITY</h3>
+                <p>¡Estoy aquí para ayudarte!</p>
+                <button class="close-chat" id="closeChat">×</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-content">
+                        ¡Hola! Soy tu asistente virtual de GYMTRINITY 💪<br><br>
+                        ¿En qué puedo ayudarte hoy?
+                    </div>
+                </div>
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <button class="quick-action-btn" onclick="sendQuickMessage('Horarios')">🕒 Horarios</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('Precios')">💰 Precios</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('Servicios')">🏋️ Servicios</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('Ubicación')">📍 Ubicación</button>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Escribe tu mensaje...">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Mobile menu toggle
@@ -188,6 +785,152 @@
         navMenu.addEventListener('click', (e) => {
             if (e.target.tagName === 'A') {
                 navMenu.classList.remove('active');
+            }
+        });
+
+        // Virtual Agent functionality
+        const agentButton = document.getElementById('agentButton');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeChat = document.getElementById('closeChat');
+        const messageInput = document.getElementById('messageInput');
+        const chatMessages = document.getElementById('chatMessages');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        let isOpen = false;
+
+        agentButton.addEventListener('click', () => {
+            if (!isOpen) {
+                chatWindow.classList.add('active');
+                isOpen = true;
+                agentButton.style.transform = 'rotate(180deg)';
+            } else {
+                chatWindow.classList.remove('active');
+                isOpen = false;
+                agentButton.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatWindow.classList.remove('active');
+            isOpen = false;
+            agentButton.style.transform = 'rotate(0deg)';
+        });
+
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            messageInput.value = '';
+            
+            showTyping();
+            setTimeout(() => {
+                hideTyping();
+                generateResponse(message);
+            }, 1000 + Math.random() * 1000);
+        }
+
+        function sendQuickMessage(topic) {
+            addMessage(topic, 'user');
+            showTyping();
+            setTimeout(() => {
+                hideTyping();
+                generateResponse(topic);
+            }, 800);
+        }
+
+        function addMessage(content, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            messageContent.innerHTML = content;
+            
+            messageDiv.appendChild(messageContent);
+            chatMessages.insertBefore(messageDiv, typingIndicator);
+            
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTyping() {
+            typingIndicator.style.display = 'block';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTyping() {
+            typingIndicator.style.display = 'none';
+        }
+
+        function generateResponse(userMessage) {
+            const responses = {
+                'horarios': '🕒 <strong>Nuestros horarios son:</strong><br><br>• Lunes a Viernes: 5:00 AM - 11:00 PM<br>• Sábados y Domingos: 7:00 AM - 9:00 PM<br><br>¡Estamos abiertos casi todo el día para tu comodidad!',
+                
+                'precios': '💰 <strong>Nuestros planes de membresía:</strong><br><br>• Plan Básico: $400/mes<br>• Plan 3 meses: $1,080/mes<br>• Plan semestral: $2,040/mes<br><br>¡Incluye acceso a todas nuestras instalaciones!',
+                
+                'servicios': '🏋️ <strong>Nuestros servicios incluyen:</strong><br><br>• Entrenamiento Personal<br>• Clases Grupales (Zumba, CrossFit, Yoga)<br>• Área de Pesas y Cardio<br>• Asesoría Nutricional<br>• Área de Relajación (Sauna, Vapor)<br><br>¡Todo lo que necesitas para transformar tu cuerpo!',
+                
+                'ubicación': '📍 <strong>Nos encontramos en:</strong><br><br>Av. Revolución 1234<br>Centro, Saltillo<br><br>📞 Teléfono: +52 844 123-4567<br>✉️ Email: info@gymtrinity.com<br><br>¡Te esperamos!',
+                
+                'default': [
+                    '¡Excelente pregunta! 💪 Estoy aquí para ayudarte con información sobre GYMTRINITY.',
+                    '¡Gracias por contactarnos! 🤖 ¿Te gustaría saber sobre nuestros servicios, horarios o precios?',
+                    '¡Hola! 👋 Soy tu asistente virtual. Puedo ayudarte con información sobre membresías, clases y más.',
+                    '¡Perfecto! 🎯 ¿En qué aspecto de GYMTRINITY te gustaría que te ayude?',
+                    '¡Genial que preguntes! 🔥 Estoy aquí para resolver todas tus dudas sobre nuestro gimnasio.'
+                ]
+            };
+
+            const message = userMessage.toLowerCase();
+            let response;
+
+            if (message.includes('horario') || message.includes('hora') || message.includes('abierto')) {
+                response = responses.horarios;
+            } else if (message.includes('precio') || message.includes('costo') || message.includes('cuanto') || message.includes('membresía')) {
+                response = responses.precios;
+            } else if (message.includes('servicio') || message.includes('clase') || message.includes('entrenamient') || message.includes('gym')) {
+                response = responses.servicios;
+            } else if (message.includes('ubicación') || message.includes('dirección') || message.includes('donde') || message.includes('teléfono')) {
+                response = responses.ubicación;
+            } else if (message.includes('hola') || message.includes('buenos') || message.includes('buenas')) {
+                response = '¡Hola! 👋 Bienvenido a GYMTRINITY. Soy tu asistente virtual y estoy aquí para ayudarte. ¿Qué te gustaría saber sobre nuestro gimnasio?';
+            } else if (message.includes('gracias') || message.includes('thank')) {
+                response = '¡De nada! 😊 Estoy aquí para ayudarte cuando lo necesites. ¿Hay algo más en lo que pueda asistirte?';
+            } else if (message.includes('bye') || message.includes('adiós') || message.includes('chao')) {
+                response = '¡Hasta pronto! 👋 Recuerda que estoy aquí 24/7 para ayudarte. ¡Que tengas un excelente día y nos vemos en GYMTRINITY! 💪';
+            } else {
+                response = responses.default[Math.floor(Math.random() * responses.default.length)];
+            }
+
+            addMessage(response, 'bot');
+        }
+
+        const observer = new MutationObserver(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+
+        observer.observe(chatMessages, { childList: true });
+
+        let welcomeShown = false;
+        
+        function showWelcomeMessage() {
+            if (!welcomeShown) {
+                setTimeout(() => {
+                    addMessage('¿Te gustaría conocer nuestros planes de membresía o tienes alguna pregunta específica? 🤔', 'bot');
+                    welcomeShown = true;
+                }, 2000);
+            }
+        }
+
+        agentButton.addEventListener('click', () => {
+            if (!isOpen) {
+                setTimeout(showWelcomeMessage, 1000);
             }
         });
     </script>
