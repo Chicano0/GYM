@@ -1,39 +1,47 @@
 <?php
-$dsn = "odbc:Driver={SQL Server};Server=192.168.1.18;Database=universidad;";
-$user = "sa";
-$password = "Uriel2004.";
+session_start();
 
 try {
-    $pdo = new PDO($dsn, $user, $password);
-    echo '<img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Conexión exitosa">';
-    echo '<div class="message success-text">✅ Conexión exitosa a la base de datos Universidad.</div>';
-    echo '
-    <script>
-        window.addEventListener("load", function() {
-            Swal.fire({
-                icon: "success",
-                title: "¡Conexión exitosa!",
-                text: "La conexión a la base de datos Universidad se realizó correctamente.",
-                confirmButtonText: "Aceptar"
-            });
-        });
-    </script>';
+    $pdo = new PDO("odbc:Driver={SQL Server};Server=26.71.132.202;Database=gym;", "sa", "Uriel2004.");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $email = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+
+    if (empty($email) || empty($password)) {
+        header("Location: forms.html?error=empty");
+        exit;
+    }
+
+    $stmt = $pdo->prepare("SELECT password FROM USUARIOS_GYM WHERE email = ?");
+    $stmt->execute([$email]);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$usuario) {
+        header("Location: forms.html?error=notfound");
+        exit;
+    }
+
+    if (password_verify($password, $usuario['password'])) {
+        $_SESSION['email'] = $email;
+        
+        // Verificar si es admin
+        if ($email === 'soporteverifiacion@gmail.com') {
+            header("Location: admin.php");
+            exit;
+        } else {
+            // Usuario normal
+            header("Location: inicio.php");
+            exit;
+        }
+    } else {
+        header("Location: forms.html?error=wrongpass");
+        exit;
+    }
+
 } catch (PDOException $e) {
-    $mensajeTecnico = $e->getMessage();
-    $mensajeUsuario = "No se pudo establecer conexión con la base de datos. Verifica el servidor, usuario o red.";
-    echo '<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" alt="Error de conexión">';
-    echo '<div class="message error-text">❌ ' . $mensajeUsuario . '</div>';
-    echo '<div class="error-detail">Detalle técnico: ' . htmlspecialchars($mensajeTecnico) . '</div>';
-    echo '
-    <script>
-        window.addEventListener("load", function() {
-            Swal.fire({
-                icon: "error",
-                title: "Error de conexión",
-                html: "<b>' . $mensajeUsuario . '</b><br><small>Detalle: ' . htmlspecialchars($mensajeTecnico) . '</small>",
-                confirmButtonText: "Reintentar"
-            });
-        });
-    </script>';
+    // Opcional: redirigir con error general
+    header("Location: forms.html?error=dberror");
+    exit;
 }
 ?>
