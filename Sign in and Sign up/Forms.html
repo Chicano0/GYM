@@ -977,6 +977,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('logout') === '1') {
+      window.history.replaceState({}, document.title, "forms.html"); // Limpia la URL
+      window.location.href = "forms.html"; // Puedes redirigir a otra página si prefieres
+    }
+  });
+</script>
+
+
+
+
 </body>
 
 </html>

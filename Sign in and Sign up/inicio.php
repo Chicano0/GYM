@@ -6,8 +6,8 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 // Validar sesión activa
-if (!isset($_SESSION['email'])) {
-    header("Location: forms.html"); 
+if (!isset($_SESSION['email']) || !isset($_SESSION['verificado']) || $_SESSION['verificado'] !== true) {
+    header("Location: verificar_codigo.php");
     exit;
 }
 
@@ -166,6 +166,14 @@ if (empty($clases_disponibles)) {
         ['nombre' => 'No hay clases programadas', 'hora' => '--:--', 'instructor' => 'N/A', 'cupos' => 0]
     ];
 }
+
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    echo "<script>location.reload();</script>";
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -479,7 +487,9 @@ if (empty($clases_disponibles)) {
             </div>
             <div class="user-info">
                 <div class="user-email"><?php echo htmlspecialchars($usuario_datos['email']); ?></div>
-                <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
+<form method="POST" style="display:inline;">
+  <button type="submit" name="logout" class="logout-btn">Cerrar Sesión</button>
+</form>
             </div>
         </div>
 

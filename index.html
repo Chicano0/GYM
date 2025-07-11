@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRINITY</title>
     <style>
+      
         * {
             margin: 0;
             padding: 0;
@@ -40,7 +41,7 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #ff6b35;
+            color: #ffffff;
         }
 
         .nav-menu {
@@ -56,7 +57,7 @@
         }
 
         .nav-menu a:hover {
-            color: #ff6b35;
+            color: #35ffee;
         }
 
         .mobile-menu {
@@ -70,10 +71,9 @@
 
         /* Hero */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            height: 120vh;
+           background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
-            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -83,7 +83,7 @@
 
         .hero-content h1 {
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-bottom: 250px;
         }
 
         .hero-content p {
@@ -92,7 +92,7 @@
         }
 
         .btn {
-            background: #ff6b35;
+            background: #000000;
             color: white;
             padding: 15px 30px;
             border: none;
@@ -105,7 +105,7 @@
         }
 
         .btn:hover {
-            background: #e55a2b;
+            background: #2bc9e5;
         }
 
         /* Container */
@@ -134,7 +134,7 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
         }
 
@@ -174,7 +174,7 @@
         .gallery-item {
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .gallery-img {
@@ -190,7 +190,7 @@
 
         /* Stats Section */
         .stats {
-            background: #ff6b35;
+            background: #0c0c0c;
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -231,7 +231,7 @@
             background: white;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .contact-item h4 {
@@ -259,11 +259,11 @@
         .agent-button {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #000000 0%, #88828f 100%);
             border-radius: 50%;
             border: none;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -274,16 +274,18 @@
 
         .agent-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes pulse {
             0% {
                 box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
             }
+
             50% {
                 box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
             }
+
             100% {
                 box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
             }
@@ -297,7 +299,7 @@
             height: 500px;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             display: none;
             flex-direction: column;
             overflow: hidden;
@@ -314,6 +316,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -321,7 +324,7 @@
         }
 
         .chat-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #000000 100%);
             color: white;
             padding: 20px;
             text-align: center;
@@ -331,7 +334,7 @@
         .agent-avatar {
             width: 50px;
             height: 50px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             margin: 0 auto 10px;
             display: flex;
@@ -389,7 +392,7 @@
         }
 
         .message.user .message-content {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #000000 0%, #000000 100%);
             color: white;
             border-bottom-right-radius: 4px;
         }
@@ -412,7 +415,7 @@
         }
 
         .quick-action-btn:hover {
-            background: #667eea;
+            background: #070707;
             color: white;
         }
 
@@ -433,7 +436,7 @@
         }
 
         .chat-input button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #764ba2 100%);
             border: none;
             color: white;
             border-radius: 50%;
@@ -478,9 +481,13 @@
         }
 
         @keyframes typing {
-            0%, 60%, 100% {
+
+            0%,
+            60%,
+            100% {
                 transform: translateY(0);
             }
+
             30% {
                 transform: translateY(-10px);
             }

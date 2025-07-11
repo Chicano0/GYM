@@ -1,18 +1,21 @@
 <?php
 session_start();
 
-// Evitar cache para que el botón atrás no muestre contenido protegido
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
 
 // Validar sesión activa y usuario admin
-if (!isset($_SESSION['email']) || $_SESSION['email'] !== 'soporteverifiacion@gmail.com') {
-   header("Location: forms.html");
-   exit;
+if (
+    !isset($_SESSION['email']) ||
+    !isset($_SESSION['verificado']) ||
+    $_SESSION['verificado'] !== true ||
+    $_SESSION['email'] !== 'soporteverifiacion@gmail.com'
+) {
+    header("Location: verificar_codigo.php");
+    exit;
 }
 
-// Datos del administrador
 $admin_datos = [
     'nombre' => 'Administrador',
     'email' => $_SESSION['email']
@@ -35,7 +38,6 @@ try {
     die("Error al contar miembros: " . $e->getMessage());
 }
 
-// Obtener miembros recientes (solo nombre)
 try {
     $stmt = $pdo->query("SELECT nombre FROM usuarios_gym ORDER BY fecha_registro DESC");
     $miembros_recientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -43,7 +45,6 @@ try {
     die("Error en la consulta: " . $e->getMessage());
 }
 
-// Obtener pagos pendientes
 try {
     $stmtPendientes = $pdo->prepare("SELECT nombre, monto, fecha_vencimiento FROM pagos_gym WHERE estatus = 'pendiente' ORDER BY fecha_vencimiento ASC");
     $stmtPendientes->execute();
@@ -52,7 +53,6 @@ try {
     die("Error al obtener pagos pendientes: " . $e->getMessage());
 }
 
-// Obtener pagos pagados
 try {
     $stmtPagados = $pdo->prepare("SELECT nombre, monto, fecha_vencimiento FROM pagos_gym WHERE estatus = 'pagado' ORDER BY fecha_vencimiento DESC");
     $stmtPagados->execute();
@@ -61,13 +61,19 @@ try {
     die("Error al obtener pagos pagados: " . $e->getMessage());
 }
 
-// Obtener equipos en mantenimiento
 try {
     $stmtCount = $pdo->query("SELECT COUNT(*) AS total_en_mantenimiento FROM equipos_mantenimiento WHERE en_servicio = 0");
     $countResult = $stmtCount->fetch(PDO::FETCH_ASSOC);
     $total_en_mantenimiento = $countResult['total_en_mantenimiento'] ?? 0;
 } catch (PDOException $e) {
     $total_en_mantenimiento = 0;
+}
+
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    echo "<script>location.reload();</script>";
+    exit;
 }
 
 ?>
@@ -319,9 +325,10 @@ try {
             </div>
             <div class="user-info">
                 <span class="user-name"><?php echo $admin_datos['nombre']; ?></span>
-                <form method="post" action="logout.php" style="display:inline;">
-                    <button type="submit" class="logout-btn">Cerrar Sesión</button>
-                </form>
+                <form method="POST" style="display:inline;">
+  <button type="submit" name="logout" class="logout-btn">Cerrar Sesión</button>
+</form>
+
             </div>
         </div>
 

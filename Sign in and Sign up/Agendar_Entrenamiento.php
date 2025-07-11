@@ -677,7 +677,6 @@ try {
                 <a href="inicio.php" class="back-btn" style="display: inline-block; margin: 0;">
                     Inicio
                 </a>
-                <span class="user-info">👤 <?php echo htmlspecialchars($usuario_info['nombre']); ?> (<?php echo htmlspecialchars($_SESSION['email']); ?>)</span>
             </div>
         </div>
 
